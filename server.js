@@ -37,11 +37,39 @@ app.post('/api/users', async (req, res) => {
 
 app.get('/api/users', async (req, res) => {
     try {
+        // const users = await User.find();
         const users = await User.find({
             firstName: 'jdawggg',
             username: 'zaaaaaaaaaaa',
         }, '-weapons -hobbies');
+
         res.json(users);
+    } catch (error) {
+        res.status(500).json({error});
+    }
+});
+
+app.put('/api/users/:userId', async (req, res) => {
+    try {
+        // findByIdAndUpdate params are (id, updates, config)
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.userId,
+            {...req.body},
+            {
+                new: true,
+            }
+        );
+
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({error});
+    }
+});
+
+app.delete('/api/users/:userId', async (req, res) => {
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.userId);
+        res.json(deletedUser);
     } catch (error) {
         res.status(500).json({error});
     }
