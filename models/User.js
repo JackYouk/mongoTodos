@@ -36,5 +36,13 @@ const userSchema = new Schema({
     ]
 });
 
+// my queries
+userSchema.statics.findByFirstName = async function(firstName) {
+    return await this.find({ firstName });
+}
+userSchema.methods.sayGreeting = function() {
+    console.log(`Hi my name is ${this.firstName}`);
+}
+
 // creates and exports collection
 module.exports = model('User', userSchema);
