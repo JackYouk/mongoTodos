@@ -1,4 +1,11 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
+const {User} = require('../models');
+
+// mongoDB connection -----------------------------------------------
+mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
+    console.log("DB connection successful");
+}).catch(err => console.log(err));
 
 // create a user POST route
 router.post('/users', async (req, res) => {
