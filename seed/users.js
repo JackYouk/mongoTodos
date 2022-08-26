@@ -9,10 +9,6 @@ module.exports = [
             primaryWeapon: 'byrna',
             secondaryWeapon: 'slick game',
         },
-        hobbies: [
-            'coding',
-            'za'
-        ],
     },
     {
         firstName: 'za',
@@ -24,10 +20,6 @@ module.exports = [
             primaryWeapon: 'claws',
             secondaryWeapon: 'fangs',
         },
-        hobbies: [
-            'slurp',
-            'peeing on the bed'
-        ],
     },
     {
         firstName: 'mama',
@@ -39,9 +31,5 @@ module.exports = [
             primaryWeapon: 'pizza',
             secondaryWeapon: 'pasta',
         },
-        hobbies: [
-            'cooking',
-            'mobbin'
-        ],
     }
 ];

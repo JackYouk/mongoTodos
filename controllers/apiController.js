@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
-const {User} = require('../models');
+const {User, Hobby} = require('../models');
 
 // mongoDB connection -----------------------------------------------
 mongoose.connect(process.env.DB_CONNECTION_STRING).then(() => {
@@ -75,9 +75,19 @@ router.put('/users/:userId', async (req, res) => {
 // update a users hobbies array by userId PUT route
 router.put('/users/addHobby/:userId', async (req, res) => {
     try {
-        const user = await User.findById(req.params.userId);
-        user.hobbies.push(...req.body.hobby);
-        await user.save();
+        const newHobby = await Hobby.create(req.body);
+
+        const user = await User.findByIdAndUpdate(
+            req.params.userId,
+            {
+                $addToSet: {
+                    hobbyIds: newHobby._id,
+                }
+            },
+            {
+                new: true,
+            }
+        ).populate('hobbyIds');
         res.json(user);
     } catch (error) {
         res.status(500).json({error});

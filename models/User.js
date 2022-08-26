@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 // creates blueprint/schema for our collection
 const userSchema = new Schema({
@@ -28,9 +28,10 @@ const userSchema = new Schema({
             default: 'Baseball',
         }
     },
-    hobbies: [
+    hobbyIds: [
         {
-            type: String,
+            type: Schema.Types.ObjectId,
+            ref: 'Hobby',
             default: [],
         }
     ]
