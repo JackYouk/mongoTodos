@@ -34,6 +34,17 @@ const userSchema = new Schema({
             default: [],
         }
     ]
+},
+{
+    timestamps: true,
+    toJSON: {
+        virtuals: true,
+    },
+});
+
+// virtuals
+userSchema.virtual('fullName').get(function () {
+    return `${this.firstName} ${this.lastName}`
 });
 
 // my queries
